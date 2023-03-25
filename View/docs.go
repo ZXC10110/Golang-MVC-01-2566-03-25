@@ -56,14 +56,9 @@ const docTemplate = `{
             "type": "string",
             "example": "Mercedes"
           },
-          "visit_date_time": {
-            "type": "string",
-            "example": "Benz"
-          },
           "message_in": {
             "type": "string",
-            "format": "date-time",
-            "example": "2023-03-25 10:08:00"
+            "example": "Benz"
           }
         }
       }

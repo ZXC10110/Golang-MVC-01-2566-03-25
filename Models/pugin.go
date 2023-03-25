@@ -12,82 +12,36 @@ import (
 //get username
 func GetUsername(req ChatCSIfElse) (user ChatCSIfElse, err error) {
 	fmt.Println("=============== User ===============")
-	if err = Config.DB.Where("username = ?", req.Username).
+	if err = Config.DB.Table("Test.ChatCSIfElse").
+		Where("username = ?", req.Username).
 		Find(&user).Error; err != nil {
 		return
 	}
-	fmt.Println("user")
+	fmt.Println(user)
 	return
 }
 
 //create non exist username
-func CreateUsername(user ChatCSIfElse) (err error) {
+func CreateUsername(user *ChatCSIfElse) (err error) {
+	fmt.Println("date ", user.VisitDateTime)
+	fmt.Println("=============== Create =============")
 	if err = Config.DB.Create(&user).Error; err != nil {
 		return
 	}
 	return
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//create feed
-func CreateFeed(feedback *Feedback) (err error) {
-	if err = Config.DB.Create(&feedback).Error; err != nil {
-		return
-	}
-	return
-}
-
-//update
-func UpdateFeed(req *Feedback) (err error) {
-	if err = Config.DB.Table("Test.Feedback").
-		Where("ref_id = ? AND feedback_status = ? OR feedback_status = ?", req.RefId, "open", "escalate").
+//update History
+func UpdateHistory(user *ChatCSIfElse) (err error) {
+	fmt.Println("=============== Update =============")
+	if err = Config.DB.Table("Test.ChatCSIfElse").
+		Where("username = ?", user.Username).
 		Update(map[string]interface{}{
-			"time_stamp":      time.Now(),
-			"feedback_status": "close",
+			"visit_date_time": time.Now(),
+			"message_in":      user.MessageIn,
+			"message_out":     user.MessageOut,
 		}).
 		Error; err != nil {
-		return
-	}
-	return
-}
-
-//admin update
-func AdminUpdate(req *Feedback) (err error) {
-	if err = Config.DB.Table("Test.Feedback").
-		Where("ref_id = ? AND feedback_status = ?", req.RefId, "open").
-		Update(map[string]interface{}{
-			"time_stamp":      time.Now(),
-			"feedback_status": "escalate",
-		}).
-		Error; err != nil {
-		return
-	}
-	return
-}
-
-//get feedback open escalate
-func GetFeedOpen() (feed []Feedback, err error) {
-	if err = Config.DB.Where("feedback_status = ?", "open").
-		Find(&feed).Error; err != nil {
-		return
-	}
-	return
-}
-
-//get feedback open escalate
-func GetFeedOpenEscalate() (feed []Feedback, err error) {
-	if err = Config.DB.Where("feedback_status = ? or feedback_status = ?", "open", "escalate").
-		Order("feedback_status").
-		Find(&feed).Error; err != nil {
-		return
-	}
-	return
-}
-
-//get feedback close
-func GetFeedClose() (feed []Feedback, err error) {
-	if err = Config.DB.Where("feedback_status = ?", "close").
-		Find(&feed).Error; err != nil {
 		return
 	}
 	return

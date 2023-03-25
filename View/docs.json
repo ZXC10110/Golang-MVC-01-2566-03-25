@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/VisitChatCSIfElse": {
+    "/visitChatCSIfElse": {
       "post": {
         "tags": [
           "ChatCSIfElse"
@@ -52,14 +52,9 @@
             "type": "string",
             "example": "Mercedes"
           },
-          "visit_date_time": {
-            "type": "string",
-            "example": "Benz"
-          },
           "message_in": {
             "type": "string",
-            "format": "date-time",
-            "example": "2017-07-21T17:32:28Z"
+            "example": "Benz"
           }
         }
       }

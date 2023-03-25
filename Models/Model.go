@@ -19,25 +19,3 @@ type ChatResult struct {
 	Welcome string `json:"welcome"`
 	Service string `json:"service"`
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-type Feedback struct {
-	RefId          string    `json:"ref_id"`
-	FirstName      string    `json:"first_name"`
-	LastName       string    `json:"last_name"`
-	Email          string    `json:"email"`
-	Feedback       string    `json:"feedback"`
-	FeedbackStatus string    `json:"feedback_status"`
-	TimeStamp      time.Time `json:"time_stamp"`
-}
-
-type GetFeedBack struct {
-	Status   string `json:"status"`
-	FeedBack []Feedback
-}
-
-type GetAllFeedBack struct {
-	OpenEscalateFeedback GetFeedBack
-	CloseFeedback        GetFeedBack
-	OpenFeedback         GetFeedBack
-}

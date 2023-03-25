@@ -5,4 +5,4 @@ CREATE TABLE Test.ChatCSIfElse (
     message_out varchar(255) 
 )
 
-INSERT INTO Test.ChatCSIfElse VALUE ("Mercedes","2023-03-25 10:08:00","","")
+INSERT INTO Test.ChatCSIfElse VALUE (1,"Mercedes","2023-03-25 10:08:00","","")
