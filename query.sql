@@ -1,0 +1,1 @@
+INSERT INTO Test.ChatCSIfElse VALUE ("Mercedes","2023-03-25 10:08:00","","")
