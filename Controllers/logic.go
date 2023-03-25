@@ -17,9 +17,11 @@ func VisitChatCSIfElse(c *gin.Context) {
 	c.ShouldBindJSON(&req)
 
 	incoming_user := Models.ChatCSIfElse{
-		Username:      req.Username,
-		VisitDateTime: time.Now(),
-		MessageIn:     req.MessageIn,
+		Username:       req.Username,
+		VisitDateTime:  time.Now(),
+		MessageIn:      req.MessageIn,
+		MessageInTime:  time.Now(),
+		MessageOutTime: time.Now(),
 	}
 	fmt.Println("================ Req ===============")
 	fmt.Println(incoming_user)
@@ -50,15 +52,15 @@ func VisitChatCSIfElse(c *gin.Context) {
 			return
 		} else {
 			fmt.Println("เพิ่มข้อมูลสำเร็จ")
-			fmt.Println("========== ChatCSIfElse =========")
+			fmt.Println("=========== ChatCSIfElse ===========")
 			welcome = "Welcome " + req.Username + " to ChatCSIfElse, the best chat AI in the world! What can I help you?"
 
 			//add history
 			history := Models.ChatCSIfElse{
-				Username:      user.Username,
-				MessageIn:     req.MessageIn,
-				MessageOut:    welcome,
-				VisitDateTime: time.Now(),
+				Username:       user.Username,
+				MessageIn:      req.MessageIn,
+				MessageOut:     welcome,
+				MessageOutTime: time.Now(),
 			}
 
 			err := Models.UpdateHistory(&history)
@@ -84,10 +86,10 @@ func VisitChatCSIfElse(c *gin.Context) {
 
 			//add history
 			history = Models.ChatCSIfElse{
-				Username:      user.Username,
-				MessageIn:     req.MessageIn,
-				MessageOut:    service,
-				VisitDateTime: time.Now(),
+				Username:       user.Username,
+				MessageIn:      req.MessageIn,
+				MessageOut:     service,
+				MessageOutTime: time.Now(),
 			}
 
 			err = Models.UpdateHistory(&history)
@@ -112,10 +114,10 @@ func VisitChatCSIfElse(c *gin.Context) {
 
 		//add history
 		history := Models.ChatCSIfElse{
-			Username:      user.Username,
-			MessageIn:     req.MessageIn,
-			MessageOut:    welcome,
-			VisitDateTime: time.Now(),
+			Username:       user.Username,
+			MessageIn:      req.MessageIn,
+			MessageOut:     welcome,
+			MessageOutTime: time.Now(),
 		}
 
 		err := Models.UpdateHistory(&history)
@@ -141,10 +143,10 @@ func VisitChatCSIfElse(c *gin.Context) {
 
 		//add history
 		history = Models.ChatCSIfElse{
-			Username:      user.Username,
-			MessageIn:     req.MessageIn,
-			MessageOut:    service,
-			VisitDateTime: time.Now(),
+			Username:       user.Username,
+			MessageIn:      req.MessageIn,
+			MessageOut:     service,
+			MessageOutTime: time.Now(),
 		}
 
 		err = Models.UpdateHistory(&history)
